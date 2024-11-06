@@ -1,7 +1,8 @@
-# song-request-frontend
-Song Request system for OBS (Browser Source frontend)
+# React + Vite
 
-This will be the front-end display for the song-request system for @the13thgeek.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- The frontend will display a horizontal queue of request songs, displayed by song title/artist and the name of the user who requested.
-- Websockets will be implemented as song requests/commands will be coming through Firebot which will send HTTP requests through a separate NodeJS app (WIP).
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
