@@ -2,30 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
-  const [queue, setQueue] = useState([
-    {
-        "title": "Xanadu",
-        "artist": "The Olivia Project",
-        "username": "the13thgeek"
-    },
-    {
-        "title": "Let Them Move",
-        "artist": "N.M.R.",
-        "username": "the13thgeek"
-    }
-  ]);
+  const [queue, setQueue] = useState([]);
 
   const addSong = (newSong) => {
-    setQueue([...queue, newSong]);
+    setQueue((prevQueue) => [...prevQueue, newSong]);
   }
 
   const testAddSong = () => {
-    setQueue([...queue, { "title": "NEW", "artist": "NEW", "username": "@the13thgeek" }]);
+    setQueue([...queue, { "title": "NEW", "artist": "NEW", "user": "@the13thgeek" }]);
   }
 
   const removeFirstSong = () => {
     setQueue((prevQueue) => prevQueue.slice(1));
   }
+
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:1300");
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === "ADD_SONG") {
+        console.log("ADD_SONG =============");
+        console.log(data.song);
+        addSong(data.song);
+      } else if(data.type === "REMOVE_SONG") {
+        removeFirstSong();
+      }
+    };
+
+    return () => {
+      ws.close();
+  };
+
+  },[]);
 
   return (
     <div>
@@ -41,7 +50,7 @@ function App() {
                         className='song-item'
                         ><b>{song.title}</b><br />
                         {song.artist}<br />
-                        <small>{song.username}</small>
+                        <small>{song.user}</small>
                     </motion.li>
                 ))}
             </AnimatePresence>
