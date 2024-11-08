@@ -10,20 +10,31 @@ ul.queue {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     
     li {
-        background-color: #fff;
-        color: #369;
-        padding: 5px 8px;
-        border-radius: 10px;
-        font-size: 14px;
+        //transition: all 0.3s;
+        //background-color: #036;
+        background-color: transparent;
+        color: #ccc;
+        padding: 5px 15px 5px 8px;
+        font-size: 13px;
+        border-left: #212121 4px solid;
+        color: #999;
+
+        &:first-child {
+            background-color: rgba(220,0,0,0.5);
+            border-left: #f00 4px solid;
+            color: #fff;
+        }
 
         b {
-            font-size: 16px;
+            font-size: 15px;
+            color: #fff;
         }
 
         small {
+            font-weight: bold;
             font-size: 12px;
         }
     }

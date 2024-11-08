@@ -48,18 +48,18 @@ function App() {
                         exit={ {opacity: 0, x: -100} }
                         transition={ {duration: 0.3}}
                         className='song-item'
-                        ><b>{song.title}</b><br />
-                        {song.artist}<br />
+                        ><b>{ song.title.length <= 15 ? song.title : song.title.substr(0,15).trim() + "..." }</b><br />
+                        / { song.artist.length <= 23 ? song.artist : song.artist.substr(0,23).trim() + "..." }<br />
                         <small>{song.user}</small>
                     </motion.li>
                 ))}
             </AnimatePresence>
         </ul>
 
-        {/* <div className="testbuttons">
+        <div className="testbuttons">
             <button onClick={() => testAddSong()}>Test Add Song</button>
             <button onClick={() => removeFirstSong()}>Test Remove Song</button>
-        </div> */}
+        </div>
     </div>
   )
 }
