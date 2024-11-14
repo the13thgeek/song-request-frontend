@@ -5,6 +5,49 @@ body {
     font-family: sans-serif;
 }
 
+@keyframes blink {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+div.main-box {
+    position: relative;
+}
+
+div.req-status {
+    position: absolute;
+    top: 0;
+    left: -5px;
+    width: 770px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        padding: 3px 5px;
+        border-radius: 5px;
+        text-align: center;
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 20px;
+        color: #ccc;
+
+        span {
+            animation: blink 1s infinite;
+        }
+
+        &.msg-closed {
+            background-color: rgba(250,0,0,0.5);
+        }
+        &.msg-available {
+            background-color: rgba(0,0,0,0.9);
+        }
+    }
+
+}
+
 ul.queue {
     list-style: none;
     margin: 0;
@@ -18,7 +61,7 @@ ul.queue {
         background-color: transparent;
         color: #ccc;
         padding: 5px 15px 5px 8px;
-        font-size: 13px;
+        font-size: 16px;
         border-left: #212121 4px solid;
         color: #999;
 
@@ -29,13 +72,13 @@ ul.queue {
         }
 
         b {
-            font-size: 15px;
+            font-size: 19px;
             color: #fff;
         }
 
         small {
             font-weight: bold;
-            font-size: 12px;
+            font-size: 17px;
         }
     }
 }

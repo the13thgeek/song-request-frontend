@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
   const [queue, setQueue] = useState([]);
+  const [reqStatus, setReqStatus] = useState(false);
 
   const addSong = (newSong) => {
     setQueue((prevQueue) => [...prevQueue, newSong]);
@@ -19,15 +20,27 @@ function App() {
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:1300");
 
+    // Events Listener
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      if (data.type === "ADD_SONG") {
-        console.log("ADD_SONG =============");
-        console.log(data.song);
-        addSong(data.song);
-      } else if(data.type === "REMOVE_SONG") {
-        removeFirstSong();
+
+      switch(data.type) {
+        case "ADD_SONG":
+          console.log("ADD_SONG =============");
+          console.log(data.song);
+          addSong(data.song);
+          break;
+        case "REMOVE_SONG":
+          removeFirstSong();
+          break;
+        case "REQUEST_MODE_ON":
+          setReqStatus(true);
+          break;
+        case "REQUEST_MODE_OFF":
+          setReqStatus(false);
+          break;
       }
+
     };
 
     return () => {
@@ -37,7 +50,11 @@ function App() {
   },[]);
 
   return (
-    <div>
+    <div className='main-box'>
+        <div className="req-status">
+        { !reqStatus && ( <p className='msg-closed'><span>Requests are currently closed.</span></p> )}
+        { (reqStatus && queue.length === 0) && ( <p className='msg-available'><span>🔽 Requests are open! See commands below 🔽</span></p> )}
+        </div>
         <ul className="queue">
             <AnimatePresence>
                 {queue.map((song, index) => (
@@ -56,10 +73,10 @@ function App() {
             </AnimatePresence>
         </ul>
 
-        <div className="testbuttons">
+        {/* <div className="testbuttons">
             <button onClick={() => testAddSong()}>Test Add Song</button>
             <button onClick={() => removeFirstSong()}>Test Remove Song</button>
-        </div>
+        </div> */}
     </div>
   )
 }
