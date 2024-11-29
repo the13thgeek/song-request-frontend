@@ -18,7 +18,7 @@ function App() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:1300");
+    const ws = new WebSocket("ws:///the13thgeek-nodejs.fly.dev");
 
     // Events Listener
     ws.onmessage = (event) => {
@@ -52,8 +52,8 @@ function App() {
   return (
     <div className='main-box'>
         <div className="req-status">
-        { !reqStatus && ( <p className='msg-closed'><span>Requests are currently closed.</span></p> )}
-        { (reqStatus && queue.length === 0) && ( <p className='msg-available'><span>🔽 Requests are open! See commands below 🔽</span></p> )}
+        { !reqStatus && ( <p className='msg-closed'><span>Requests are CLOSED</span></p> )}
+        { (reqStatus && queue.length === 0) && ( <p className='msg-available'><span>🔽 Requests OPEN! See commands below 🔽</span></p> )}
         </div>
         <ul className="queue">
             <AnimatePresence>
