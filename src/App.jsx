@@ -18,7 +18,8 @@ function App() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket("ws:///the13thgeek-nodejs.fly.dev");
+    const ws = new WebSocket("wss:///the13thgeek-nodejs.fly.dev");
+    //const ws = new WebSocket("ws:///localhost:8080");
 
     // Events Listener
     ws.onmessage = (event) => {
@@ -26,8 +27,8 @@ function App() {
 
       switch(data.type) {
         case "ADD_SONG":
-          console.log("ADD_SONG =============");
-          console.log(data.song);
+          console.log("ADD_SONG");
+          //console.log(data.song);
           addSong(data.song);
           break;
         case "REMOVE_SONG":
