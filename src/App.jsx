@@ -27,7 +27,7 @@ function App() {
 
       switch(data.type) {
         case "ADD_SONG":
-          console.log("ADD_SONG");
+          //console.log("ADD_SONG");
           //console.log(data.song);
           addSong(data.song);
           break;
@@ -35,9 +35,11 @@ function App() {
           removeFirstSong();
           break;
         case "REQUEST_MODE_ON":
+          //console.log("REQUEST_MODE_ON");
           setReqStatus(true);
           break;
         case "REQUEST_MODE_OFF":
+          //console.log("REQUEST_MODE_OFF");
           setReqStatus(false);
           break;
       }
@@ -45,8 +47,11 @@ function App() {
     };
 
     return () => {
+      // if (ws.readyState === 1) {
+      //   ws.close();
+      // }
       ws.close();
-  };
+    };
 
   },[]);
 
