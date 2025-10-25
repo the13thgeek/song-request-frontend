@@ -46,8 +46,8 @@ function App() {
   }
 
   useEffect(() => {
-    //const ws = new WebSocket("wss:///the13thgeek-nodejs.fly.dev");
-    const ws = new WebSocket("ws:///localhost:8080");
+    const ws = new WebSocket("wss:///the13thgeek-nodejs.fly.dev");
+    //const ws = new WebSocket("ws:///localhost:8080");
 
     // Events Listener
     ws.onmessage = (event) => {
