@@ -46,8 +46,8 @@ function App() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket("wss:///the13thgeek-nodejs.fly.dev");
-    //const ws = new WebSocket("ws:///localhost:8080");
+    //const ws = new WebSocket("wss:///the13thgeek-nodejs.fly.dev");
+    const ws = new WebSocket("ws:///localhost:8080");
 
     // Events Listener
     ws.onmessage = (event) => {
@@ -94,7 +94,7 @@ function App() {
       { (reqStatus && queue.length === 0) && ( <p className='msg-available'><span>🔽 Requests OPEN! See commands below 🔽</span></p> )}
       </div>
       <div className="labels">
-        <p className="main-label">Request Queue</p>
+        <p className="main-label">Requests<br />Queue</p>
         <p className="arrows">&gt;&gt;&gt;</p>
       </div>
       <div className="queue-box">
@@ -123,9 +123,9 @@ function App() {
           </AnimatePresence>
       </div>
     </div>
-    <button onClick={() => testAddSong()}>Test Add Song</button>
+    { /* <button onClick={() => testAddSong()}>Test Add Song</button>
     <button onClick={() => removeFirstSong()}>Test Remove Song</button>
-    <button onClick={() => nowPlaying()}>Test Now Playing</button>
+    <button onClick={() => nowPlaying()}>Test Now Playing</button> */ }
     </>
     // <div className='main-box'>
     //     <div className="req-status">
