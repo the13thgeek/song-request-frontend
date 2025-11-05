@@ -112,8 +112,10 @@ function App() {
                 <div className="contents">
                   <img className='avatar' src={song.avatar} width={43} height={43} />
                   <div className="song-info">
-                    <p className="title">{ song.title.length <= 15 ? song.title : song.title.substr(0,15).trim() + "..." }</p>
-                    <p className="artist">/ { song.artist.length <= 23 ? song.artist : song.artist.substr(0,23).trim() + "..." }</p>
+                    {/* <p className="title">{ song.title.length <= 15 ? song.title : song.title.substr(0,15).trim() + "..." }</p>
+                    <p className="artist">/ { song.artist.length <= 23 ? song.artist : song.artist.substr(0,23).trim() + "..." }</p> */}
+                    <p className={song.title.length > 15 ? "title extended" : "title"}>{ song.title }</p>
+                    <p className={song.artist.length > 23 ? "artist extended" : "artist"}>/ { song.artist }</p>
                   </div>
                 </div>
 
